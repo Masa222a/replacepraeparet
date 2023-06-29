@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">replacepraeparet</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_title">探す</string>
+    <string name="post_title">投稿</string>
+    <string name="information_title">情報</string>
+    <string name="account_title">アカウント</string>
 </resources>
