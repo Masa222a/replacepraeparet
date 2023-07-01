@@ -6,4 +6,22 @@
     <string name="post_title">投稿</string>
     <string name="information_title">情報</string>
     <string name="account_title">アカウント</string>
+    <string name="tab_item_asia">アジア</string>
+    <string name="tab_item_oceania">オセアニア</string>
+    <string name="tab_item_north_america">北米</string>
+    <string name="tab_item_latin_america">中・南米</string>
+    <string name="tab_item_europe">ヨーロッパ</string>
+    <string name="tab_item_middle_east">中東</string>
+    <string name="tab_item_africa">アフリカ</string>
+    <string name="population_label">人口</string>
+    <string name="language_label">言語</string>
+    <string name="capital_label">首都</string>
+    <string name="currency_label">通貨</string>
+    <string name="image_description">image</string>
+    <string name="mock_population">13億6900万人</string>
+    <string name="mock_language">ヒンディー語/英語/他</string>
+    <string name="mock_capital">ニューデリー</string>
+    <string name="mock_currency">インド・ルピー(INR)₹</string>
+    <string name="arrow"><![CDATA[>]]></string>
+    <string name="mock_country_name">インド</string>
 </resources>
