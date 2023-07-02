@@ -69,6 +69,7 @@ class InformationFragment : Fragment() {
                         .beginTransaction()
                         .replace(R.id.navHost, fragment)
                         .addToBackStack(null)
+                        .setReorderingAllowed(true)
                         .commit()
                 }
             }
