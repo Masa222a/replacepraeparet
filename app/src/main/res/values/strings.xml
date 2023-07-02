@@ -22,6 +22,5 @@
     <string name="mock_language">ヒンディー語/英語/他</string>
     <string name="mock_capital">ニューデリー</string>
     <string name="mock_currency">インド・ルピー(INR)₹</string>
-    <string name="arrow"><![CDATA[>]]></string>
     <string name="mock_country_name">インド</string>
 </resources>
