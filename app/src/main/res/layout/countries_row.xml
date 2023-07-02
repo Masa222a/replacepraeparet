@@ -203,9 +203,9 @@
                 android:id="@+id/to_detail_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:background="#F3F3F3"
-                android:text="@string/arrow"
+                android:text=">"
                 android:textColor="#FF9800"
                 android:textSize="24sp" />
 
