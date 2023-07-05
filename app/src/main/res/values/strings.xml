@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">replacepraeparet</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_title">探す</string>
     <string name="post_title">投稿</string>
@@ -23,4 +22,11 @@
     <string name="mock_capital">ニューデリー</string>
     <string name="mock_currency">インド・ルピー(INR)₹</string>
     <string name="mock_country_name">インド</string>
+    <string name="post_label_in_account">投稿</string>
+    <string name="photo_label_in_account">写真</string>
+    <string name="post_location_label_in_account">投稿位置</string>
+    <string name="post_count_label_in_account">投稿数：</string>
+    <string name="photo_count_label_in_account">写真数：</string>
+    <string name="example_photo_text_in_account">投稿写真数表示</string>
+    <string name="example_post_text_in_account">投稿数表示</string>
 </resources>
