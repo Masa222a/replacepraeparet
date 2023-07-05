@@ -29,4 +29,7 @@
     <string name="photo_count_label_in_account">写真数：</string>
     <string name="example_photo_text_in_account">投稿写真数表示</string>
     <string name="example_post_text_in_account">投稿数表示</string>
+    <string name="example_text_in_detail_embassy">レギュラー観光ビザ</string>
+    <string name="example_title_in_detail_embassy">大使館タイトル</string>
+    <string name="example_address_in_detail_embassy">住所</string>
 </resources>
