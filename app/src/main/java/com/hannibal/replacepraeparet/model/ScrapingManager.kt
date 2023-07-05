@@ -1,4 +1,4 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.model
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

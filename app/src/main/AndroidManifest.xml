@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Replacepraeparet"
         tools:targetApi="31"
-        android:name=".MyApplication">
+        android:name=".model.MyApplication">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

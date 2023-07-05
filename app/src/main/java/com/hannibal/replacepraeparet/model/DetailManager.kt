@@ -1,4 +1,4 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.model
 
 import android.widget.ImageView
 

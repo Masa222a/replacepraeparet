@@ -1,5 +1,6 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.model
 
+import com.hannibal.replacepraeparet.R
 import org.xmlpull.v1.XmlPullParser
 
 class XmlManager {

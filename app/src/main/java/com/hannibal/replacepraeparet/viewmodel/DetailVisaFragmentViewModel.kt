@@ -1,7 +1,8 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.hannibal.replacepraeparet.model.XmlManager
 
 class DetailVisaFragmentViewModel : ViewModel() {
     var visaData = MutableLiveData<String>()

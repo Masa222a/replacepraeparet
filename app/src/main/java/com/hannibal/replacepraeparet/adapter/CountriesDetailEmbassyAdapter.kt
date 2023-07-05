@@ -1,10 +1,12 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.hannibal.replacepraeparet.model.Embassy
+import com.hannibal.replacepraeparet.R
 
 class CountriesDetailEmbassyAdapter(var embassyList: MutableList<Embassy> = mutableListOf())
     : RecyclerView.Adapter<CountriesDetailEmbassyAdapter.ViewHolder>() {

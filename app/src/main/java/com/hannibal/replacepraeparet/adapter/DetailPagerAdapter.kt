@@ -1,10 +1,13 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.adapter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.hannibal.replacepraeparet.model.Flag
+import com.hannibal.replacepraeparet.view.fragment.DetailEmbassyFragment
+import com.hannibal.replacepraeparet.view.fragment.DetailVisaFragment
 
 class DetailPagerAdapter(val flag: Flag, fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {

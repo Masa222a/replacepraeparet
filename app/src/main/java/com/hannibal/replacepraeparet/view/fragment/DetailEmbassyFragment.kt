@@ -1,4 +1,4 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.view.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,6 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hannibal.replacepraeparet.adapter.CountriesDetailEmbassyAdapter
+import com.hannibal.replacepraeparet.viewmodel.DetailEmbassyFragmentViewModel
+import com.hannibal.replacepraeparet.model.Embassy
+import com.hannibal.replacepraeparet.model.Flag
 import com.hannibal.replacepraeparet.databinding.FragmentDetailEmbassyBinding
 import kotlinx.coroutines.*
 

@@ -1,4 +1,4 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.hannibal.replacepraeparet.databinding.FragmentDetailBinding
+import com.hannibal.replacepraeparet.viewmodel.DetailVisaFragmentViewModel
+import com.hannibal.replacepraeparet.model.Flag
 import com.hannibal.replacepraeparet.databinding.FragmentDetailVisaBinding
 
 class DetailVisaFragment : Fragment() {
