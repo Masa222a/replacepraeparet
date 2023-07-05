@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.hannibal.replacepraeparet.SearchFragment"
+        android:name="com.hannibal.replacepraeparet.view.fragment.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/nav_post"
-        android:name="com.hannibal.replacepraeparet.PostFragment"
+        android:name="com.hannibal.replacepraeparet.view.fragment.PostFragment"
         android:label="fragment_post"
         tools:layout="@layout/fragment_post" />
 
     <fragment
         android:id="@+id/nav_information"
-        android:name="com.hannibal.replacepraeparet.InformationFragment"
+        android:name="com.hannibal.replacepraeparet.view.fragment.InformationFragment"
         android:label="fragment_information"
         tools:layout="@layout/fragment_information" />
 
     <fragment
         android:id="@+id/nav_account"
-        android:name="com.hannibal.replacepraeparet.AccountFragment"
+        android:name="com.hannibal.replacepraeparet.view.fragment.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
 </navigation>

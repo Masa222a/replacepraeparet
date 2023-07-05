@@ -1,7 +1,9 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.hannibal.replacepraeparet.model.Flag
+import com.hannibal.replacepraeparet.model.XmlManager
 
 class InformationFragmentViewModel : ViewModel() {
     var flagList = MutableLiveData(listOf<Flag>())

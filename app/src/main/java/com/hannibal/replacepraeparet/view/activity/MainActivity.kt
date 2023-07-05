@@ -1,9 +1,10 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.view.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.hannibal.replacepraeparet.R
 import com.hannibal.replacepraeparet.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

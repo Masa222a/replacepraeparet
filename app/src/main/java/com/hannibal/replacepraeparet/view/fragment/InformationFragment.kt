@@ -1,4 +1,4 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.view.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,7 +11,12 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
+import com.hannibal.replacepraeparet.*
+import com.hannibal.replacepraeparet.adapter.CountriesListAdapter
 import com.hannibal.replacepraeparet.databinding.FragmentInformationBinding
+import com.hannibal.replacepraeparet.model.Flag
+import com.hannibal.replacepraeparet.model.XmlManager
+import com.hannibal.replacepraeparet.viewmodel.InformationFragmentViewModel
 
 class InformationFragment : Fragment() {
     private lateinit var binding: FragmentInformationBinding

@@ -1,4 +1,4 @@
-package com.hannibal.replacepraeparet
+package com.hannibal.replacepraeparet.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.hannibal.replacepraeparet.model.Flag
+import com.hannibal.replacepraeparet.R
 import com.squareup.picasso.Picasso
 
 class CountriesListAdapter(var flagList: List<Flag>): RecyclerView.Adapter<CountriesListAdapter.ViewHolder>() {
