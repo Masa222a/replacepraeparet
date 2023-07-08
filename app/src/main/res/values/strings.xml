@@ -32,4 +32,7 @@
     <string name="example_text_in_detail_embassy">レギュラー観光ビザ</string>
     <string name="example_title_in_detail_embassy">大使館タイトル</string>
     <string name="example_address_in_detail_embassy">住所</string>
+    <string name="none_text">-</string>
+    <string name="guest_name_text">ゲスト</string>
+    <string name="login_button_text">ログイン</string>
 </resources>
