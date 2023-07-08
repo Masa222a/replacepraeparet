@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hannibal.replacepraeparet.adapter.AccountPagerAdapter
 import com.hannibal.replacepraeparet.databinding.FragmentAccountBinding
@@ -26,6 +27,12 @@ class AccountFragment : Fragment() {
             TabLayoutMediator(tabLayout, viewpagerInAccount) { tab, position ->
                 tab.text = tabTitleList[position]
             }.attach()
+
+            myProfilePhoto.shapeAppearanceModel =
+                ShapeAppearanceModel
+                    .builder()
+                    .setAllCornerSizes(ShapeAppearanceModel.PILL)
+                    .build()
         }
 
         return binding.root
