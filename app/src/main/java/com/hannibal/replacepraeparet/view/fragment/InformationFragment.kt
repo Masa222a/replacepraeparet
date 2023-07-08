@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.hannibal.replacepraeparet.*
@@ -66,16 +67,8 @@ class InformationFragment : Fragment() {
         adapter!!.setOnCountryClickListener(
             object : CountriesListAdapter.OnCountryCellClickListener {
                 override fun onItemClick(flag: Flag) {
-                    val fragment = DetailFragment()
-                    val bundle = Bundle()
-                    bundle.putSerializable("country", flag)
-                    fragment.arguments = bundle
-                    parentFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.navHost, fragment)
-                        .addToBackStack(null)
-                        .setReorderingAllowed(true)
-                        .commit()
+                    val action = InformationFragmentDirections.actionNavInformationToDetailFragment(flag)
+                    findNavController().navigate(action)
                 }
             }
         )

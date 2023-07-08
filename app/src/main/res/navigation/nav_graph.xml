@@ -21,11 +21,29 @@
         android:id="@+id/nav_information"
         android:name="com.hannibal.replacepraeparet.view.fragment.InformationFragment"
         android:label="fragment_information"
-        tools:layout="@layout/fragment_information" />
+        tools:layout="@layout/fragment_information" >
+
+        <action
+            android:id="@+id/action_nav_information_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_account"
         android:name="com.hannibal.replacepraeparet.view.fragment.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.hannibal.replacepraeparet.view.fragment.DetailFragment"
+        tools:layout="@layout/fragment_detail"
+        android:label="DetailFragment" >
+
+        <action
+            android:id="@+id/action_detailFragment_to_nav_information"
+            app:popUpTo="@id/nav_information" />
+        <argument
+            android:name="flag"
+            app:argType="com.hannibal.replacepraeparet.model.Flag" />
+    </fragment>
 </navigation>
