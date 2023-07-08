@@ -17,7 +17,7 @@ class DetailVisaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailVisaBinding.inflate(inflater, container, false)
         val flag = arguments?.getSerializable("flag") as Flag
         viewModel.getVisaData(flag.id)
