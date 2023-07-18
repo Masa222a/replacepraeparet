@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1038241444896",
+    "project_id": "replacepraeparet",
+    "storage_bucket": "replacepraeparet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038241444896:android:e86e6154f1792d767ab845",
+        "android_client_info": {
+          "package_name": "com.hannibal.replacepraeparet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038241444896-9doahvaco5kql2n2n12rc1vibhcijt5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTKO50Daw4p-2ZeArWMprfYIrS0jUW6I0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038241444896-9doahvaco5kql2n2n12rc1vibhcijt5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
