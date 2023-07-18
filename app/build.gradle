@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -56,6 +57,10 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     //Jsoup
     implementation 'org.jsoup:jsoup:1.14.2'
+    //firebase authentication
+    implementation 'com.google.firebase:firebase-auth-ktx:22.1.0'
+    //google signIn
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
