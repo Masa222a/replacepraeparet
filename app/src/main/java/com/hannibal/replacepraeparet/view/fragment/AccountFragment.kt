@@ -1,5 +1,6 @@
 package com.hannibal.replacepraeparet.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hannibal.replacepraeparet.adapter.AccountPagerAdapter
 import com.hannibal.replacepraeparet.databinding.FragmentAccountBinding
+import com.hannibal.replacepraeparet.view.activity.LoginActivity
 
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
@@ -33,6 +35,11 @@ class AccountFragment : Fragment() {
                     .builder()
                     .setAllCornerSizes(ShapeAppearanceModel.PILL)
                     .build()
+
+            loginButton.setOnClickListener {
+                val intent = Intent(activity, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         return binding.root

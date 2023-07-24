@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.LoginActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/my_profile_photo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/sampleimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/app_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textSize="24dp"
+        android:textStyle="italic"
+        android:text="@string/app_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_photo" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/email_button"
+        style="@style/FirebaseUI.Button.AccountChooser.EmailButton"
+        android:layout_width="250dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/fui_sign_in_with_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_title_text"
+        tools:ignore="UnusedIds" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/google_SignIn_Button"
+        style="@style/FirebaseUI.Button.AccountChooser.GoogleButton"
+        android:layout_width="250dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/fui_sign_in_with_google"
+        android:textColor="#616161"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/twitter_SignIn_Button"
+        style="@style/FirebaseUI.Button.AccountChooser.TwitterButton"
+        android:layout_width="250dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/fui_sign_in_with_twitter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/google_SignIn_Button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/facebook_SignIn_Button"
+        style="@style/FirebaseUI.Button.AccountChooser.FacebookButton"
+        android:layout_width="250dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/fui_sign_in_with_facebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/twitter_SignIn_Button" />
+
+    <TextView
+        android:id="@+id/service_and_policy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="By continuing, you are indicating that you accept our Terms of Service and Privacy Policy."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facebook_SignIn_Button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

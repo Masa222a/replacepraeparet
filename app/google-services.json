@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "1038241444896-9doahvaco5kql2n2n12rc1vibhcijt5j.apps.googleusercontent.com",
+          "client_id": "1038241444896-ibrnnadjsb2s3a35u7gk1rncdk49gbf0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hannibal.replacepraeparet",
+            "certificate_hash": "4aad8bbfc5f95a87a61e5840d0c01f93bad74236"
+          }
+        },
+        {
+          "client_id": "1038241444896-vspltl0oo461l12tb2h4b9kmn7n0b36a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
