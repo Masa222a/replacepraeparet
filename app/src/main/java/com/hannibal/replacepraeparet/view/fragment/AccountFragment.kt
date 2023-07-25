@@ -14,6 +14,7 @@ import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
+import com.hannibal.replacepraeparet.R
 import com.hannibal.replacepraeparet.adapter.AccountPagerAdapter
 import com.hannibal.replacepraeparet.databinding.FragmentAccountBinding
 
@@ -61,6 +62,8 @@ class AccountFragment : Fragment() {
         startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
+                .setTheme(com.facebook.R.style.Theme_AppCompat_Light_NoActionBar)
+                .setLogo(R.drawable.ic_launcher_round)
                 .setAvailableProviders(providers)
                 .build(),
             SIGN_IN_RESULT_CODE
