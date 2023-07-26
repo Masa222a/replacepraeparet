@@ -5,10 +5,10 @@ import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -22,12 +22,15 @@ class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
     private val tabTitleList = listOf("投稿", "写真", "投稿位置")
     val SIGN_IN_RESULT_CODE = 9999
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentAccountBinding.inflate(inflater, container, false)
+
+        auth = FirebaseAuth.getInstance()
 
         binding.apply {
             val adapter = AccountPagerAdapter(childFragmentManager, lifecycle)
@@ -43,8 +46,20 @@ class AccountFragment : Fragment() {
                     .setAllCornerSizes(ShapeAppearanceModel.PILL)
                     .build()
 
-            loginButton.setOnClickListener {
-                launchSignInFlow()
+            auth.addAuthStateListener { mAuth ->
+                if (mAuth.currentUser != null) {
+                    loginButton.text = "ログアウト"
+                    loginButton.setOnClickListener {
+                        mAuth.signOut()
+                        Log.d("LoginState", "ログアウトしました。")
+                    }
+                } else {
+                    loginButton.text = "ログイン"
+                    loginButton.setOnClickListener {
+                        launchSignInFlow()
+                        Log.d("LoginState", "ログインしました。")
+                    }
+                }
             }
         }
 
