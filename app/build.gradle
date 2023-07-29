@@ -4,6 +4,7 @@ plugins {
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -16,6 +17,11 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        def properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def API_KEY = properties.getProperty("api_key")
+        buildConfigField("String", "API_KEY", "\"${API_KEY}\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -67,6 +73,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.6.0'
     //email
     implementation 'com.google.android.gms:play-services-auth:20.6.0'
+    //google map
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
