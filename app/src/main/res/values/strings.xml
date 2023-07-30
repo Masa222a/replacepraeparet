@@ -36,4 +36,5 @@
     <string name="guest_name_text">ゲスト</string>
     <string name="login_button_text">ログイン</string>
     <string name="app_title">PRAEPARET</string>
+    <string name="set_location">位置を決定する</string>
 </resources>
