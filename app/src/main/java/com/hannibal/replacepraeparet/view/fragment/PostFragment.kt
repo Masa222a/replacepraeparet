@@ -1,14 +1,19 @@
 package com.hannibal.replacepraeparet.view.fragment
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.hannibal.replacepraeparet.R
@@ -18,6 +23,7 @@ import java.util.*
 class PostFragment : Fragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentPostBinding
     private lateinit var mMap: GoogleMap
+    private lateinit var mp: MarkerOptions
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,24 +34,26 @@ class PostFragment : Fragment(), OnMapReadyCallback {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        binding.putMarkerButton.setOnClickListener {
+            val center = mMap.cameraPosition.target
+            val location = LatLng(center.latitude, center.longitude)
+            val str =
+                java.lang.String.format(
+                    Locale.US,
+                    "%f, %f",
+                    center.latitude,
+                    center.longitude
+                )
+            mMap.addMarker(MarkerOptions().position(location).title(str).icon(BitmapDescriptorFactory.fromResource(R.drawable.pin1)))
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 7f))
+            Log.d("location_center", "$center")
+            Log.d("location_str", "$str")
+        }
+
         return binding.root
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        var location = LatLng(0.0,0.0)
-
-        mMap.setOnMapClickListener { tapLocation: LatLng ->
-            location = LatLng(tapLocation.latitude, tapLocation.longitude)
-            val str =
-                java.lang.String.format(
-                    Locale.US,
-                    "%f, %f",
-                    tapLocation.latitude,
-                    tapLocation.longitude
-                )
-            mMap.addMarker(MarkerOptions().position(location).title(str))
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 14f))
-        }
     }
 }
