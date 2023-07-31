@@ -55,20 +55,5 @@ class PostFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        var location = LatLng(0.0,0.0)
-
-//        mMap.setOnMapClickListener { tapLocation: LatLng ->
-//            location = LatLng(tapLocation.latitude, tapLocation.longitude)
-//            val str =
-//                java.lang.String.format(
-//                    Locale.US,
-//                    "%f, %f",
-//                    tapLocation.latitude,
-//                    tapLocation.longitude
-//                )
-//            mMap.addMarker(MarkerOptions().position(location).title(str).icon(BitmapDescriptorFactory.fromResource(R.drawable.pin1)))
-//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 5f))
-//        }
     }
 }
