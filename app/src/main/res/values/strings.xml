@@ -46,4 +46,5 @@
     <string name="post">投稿する</string>
     <string name="title_label">タイトル</string>
     <string name="alert_range_label">警戒範囲</string>
+    <string name="title_text_hint">タイトルを入力...</string>
 </resources>
