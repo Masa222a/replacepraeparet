@@ -52,6 +52,7 @@
             android:layout_height="wrap_content"
             android:text="@string/alert_range_label"
             android:textSize="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
@@ -59,8 +60,23 @@
             android:id="@+id/alert_range_seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="30"
+            android:progress="0"
             app:layout_constraintStart_toStartOf="@id/alert_range_label"
             app:layout_constraintTop_toBottomOf="@id/alert_range_label" />
+
+        <TextView
+            android:id="@+id/seek_bar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/specific_position"
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:background="@color/trigger"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/alert_range_seek_bar" />
 
         <View
             android:id="@+id/divider2"
@@ -70,7 +86,7 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/alert_range_seek_bar" />
+            app:layout_constraintTop_toBottomOf="@id/seek_bar_text" />
 
         <TextView
             android:id="@+id/title_label"
@@ -78,6 +94,7 @@
             android:layout_height="wrap_content"
             android:textSize="24dp"
             android:text="@string/title_label"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider2"/>
 
@@ -90,6 +107,7 @@
             android:minHeight="30dp"
             android:textSize="18dp"
             android:gravity="center"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_label" />
 
@@ -109,6 +127,7 @@
             android:layout_height="wrap_content"
             android:text="@string/category_label"
             android:textSize="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
@@ -116,6 +135,7 @@
             android:id="@+id/category_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@id/category_label"
             app:layout_constraintTop_toBottomOf="@id/category_label" />
 
@@ -135,6 +155,7 @@
             android:layout_height="wrap_content"
             android:text="@string/time_of_damage_label"
             android:textSize="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
@@ -142,6 +163,7 @@
             android:id="@+id/time_of_damage_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@id/time_of_damage_label"
             app:layout_constraintTop_toBottomOf="@id/time_of_damage_label" />
 
@@ -161,6 +183,7 @@
             android:layout_height="wrap_content"
             android:text="@string/address_label"
             android:textSize="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider5" />
 
@@ -189,6 +212,7 @@
             android:layout_height="wrap_content"
             android:text="@string/image_label"
             android:textSize="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
@@ -196,6 +220,7 @@
             android:id="@+id/add_image_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/photo"
             app:layout_constraintStart_toStartOf="@id/image_label"
             app:layout_constraintTop_toBottomOf="@id/image_label" />
@@ -216,6 +241,7 @@
             android:layout_height="wrap_content"
             android:text="@string/comment_label"
             android:textSize="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
