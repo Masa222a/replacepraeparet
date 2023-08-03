@@ -1,5 +1,6 @@
 package com.hannibal.replacepraeparet.view.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,7 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
         binding.apply {
             alertRangeSeekBar.setOnSeekBarChangeListener(
                 object : SeekBar.OnSeekBarChangeListener {
+                    @SuppressLint("SetTextI18n")
                     override fun onProgressChanged(
                         seekBar: SeekBar?,
                         progress: Int,
