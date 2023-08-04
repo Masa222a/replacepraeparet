@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hannibal.replacepraeparet.R
 import com.hannibal.replacepraeparet.databinding.FragmentPostBottomSheetBinding
+import com.hannibal.replacepraeparet.model.SpinnerCategory
+import com.hannibal.replacepraeparet.model.SpinnerDamageTime
 
 class PostBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentPostBottomSheetBinding
@@ -24,8 +28,65 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
         }
 
         setUpSeekBar()
+        setUpSpinner()
 
         return binding.root
+    }
+
+    private fun setUpSpinner() {
+        val categoryAdapter = ArrayAdapter<String>(
+            requireContext(),
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+
+        val damageAdapter = ArrayAdapter<String>(
+            requireContext(),
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+
+        categoryAdapter.setDropDownViewResource(com.facebook.share.R.layout.support_simple_spinner_dropdown_item)
+        damageAdapter.setDropDownViewResource(com.facebook.share.R.layout.support_simple_spinner_dropdown_item)
+
+        SpinnerCategory.values().forEach {
+            categoryAdapter.add(it.category)
+        }
+
+        SpinnerDamageTime.values().forEach {
+            damageAdapter.add(it.times)
+        }
+
+        binding.apply {
+            categoryList.adapter = categoryAdapter
+            timeOfDamageList.adapter = damageAdapter
+
+            categoryList.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long,
+                    ) {
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                    }
+
+                }
+
+            timeOfDamageList.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long,
+                    ) {
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                    }
+
+                }
+        }
     }
 
     private fun setUpSeekBar() {
