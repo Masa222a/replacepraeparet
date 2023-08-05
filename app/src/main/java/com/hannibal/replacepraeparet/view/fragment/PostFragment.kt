@@ -1,18 +1,15 @@
 package com.hannibal.replacepraeparet.view.fragment
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -35,6 +32,7 @@ class PostFragment : Fragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         binding.putMarkerButton.setOnClickListener {
+            openBottomSheet()
             val center = mMap.cameraPosition.target
             val location = LatLng(center.latitude, center.longitude)
             val str =
@@ -50,7 +48,14 @@ class PostFragment : Fragment(), OnMapReadyCallback {
             Log.d("location_str", "$str")
         }
 
+
+
         return binding.root
+    }
+
+    private fun openBottomSheet() {
+        val dialog = PostBottomSheetFragment()
+        dialog.show(childFragmentManager, dialog.tag)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
