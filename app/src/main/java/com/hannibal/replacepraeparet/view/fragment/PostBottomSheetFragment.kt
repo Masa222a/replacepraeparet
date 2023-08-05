@@ -1,6 +1,8 @@
 package com.hannibal.replacepraeparet.view.fragment
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hannibal.replacepraeparet.R
 import com.hannibal.replacepraeparet.databinding.FragmentPostBottomSheetBinding
@@ -23,8 +26,15 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
     ): View {
         binding = FragmentPostBottomSheetBinding.inflate(inflater, container, false)
 
-        binding.closeButton.setOnClickListener {
-            dismiss()
+        binding.apply {
+            closeButton.setOnClickListener {
+                dismiss()
+            }
+
+            addImageButton.setOnClickListener {
+
+
+            }
         }
 
         setUpSeekBar()
