@@ -219,7 +219,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:scrollbars="horizontal"
             android:fadeScrollbars="false"
             app:layout_constraintStart_toStartOf="@+id/image_label"
@@ -227,13 +227,14 @@
 
         <ImageView
             android:id="@+id/add_image_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
             android:src="@drawable/photo"
             app:layout_constraintTop_toTopOf="@+id/recyclerView"
-            app:layout_constraintStart_toEndOf="@+id/recyclerView" />
+            app:layout_constraintStart_toEndOf="@+id/recyclerView"
+            app:layout_constraintBottom_toBottomOf="@id/recyclerView"/>
 
         <View
             android:id="@+id/divider7"

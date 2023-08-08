@@ -3,6 +3,8 @@ package com.hannibal.replacepraeparet.view.fragment
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,15 +12,27 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
-import androidx.activity.result.contract.ActivityResultContracts
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hannibal.replacepraeparet.R
+import com.hannibal.replacepraeparet.adapter.ChoiceImageAdapter
 import com.hannibal.replacepraeparet.databinding.FragmentPostBottomSheetBinding
 import com.hannibal.replacepraeparet.model.SpinnerCategory
 import com.hannibal.replacepraeparet.model.SpinnerDamageTime
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class PostBottomSheetFragment : BottomSheetDialogFragment() {
+    private val Read_Permission = 101
     private lateinit var binding: FragmentPostBottomSheetBinding
+    private val REQUEST_CODE = 200
+    private var imageList = mutableListOf<Uri>()
+    private var adapter: ChoiceImageAdapter? =null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,13 +41,19 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
         binding = FragmentPostBottomSheetBinding.inflate(inflater, container, false)
 
         binding.apply {
+            val recyclerView = recyclerView
+            val layoutManager = LinearLayoutManager(activity)
+            adapter = ChoiceImageAdapter(imageList)
+            layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+            recyclerView.layoutManager = layoutManager
+            recyclerView.adapter = adapter
+
             closeButton.setOnClickListener {
                 dismiss()
             }
 
             addImageButton.setOnClickListener {
-
-
+                openGalleryForImages()
             }
         }
 
@@ -41,6 +61,56 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
         setUpSpinner()
 
         return binding.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
+            if (data?.clipData != null) {
+                val count = data.clipData?.itemCount
+
+                for (i in 0 until count!!) {
+                    val imageUri: Uri = data.clipData?.getItemAt(i)!!.uri
+                    imageList.add(imageUri)
+                }
+                reloadImageList(imageList)
+                
+            } else if (data?.data != null) {
+                val imageUri: Uri = data.data!!
+                imageList.add(imageUri)
+                reloadImageList(imageList)
+            }
+        }
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    @SuppressLint("NotifyDataSetChanged")
+    private fun reloadImageList(imageList: MutableList<Uri>) {
+        val listLength = imageList.count()
+        if (listLength <= 5) {
+            GlobalScope.launch(Dispatchers.Main) {
+                adapter!!.imageList = imageList
+                adapter!!.notifyDataSetChanged()
+            }
+        } else {
+            Toast.makeText(activity, getString(R.string.choose_image_alert_text), Toast.LENGTH_SHORT).show()
+            for (i in 1..listLength - 5) {
+                imageList.removeLast()
+            }
+            GlobalScope.launch(Dispatchers.Main) {
+                adapter!!.imageList = imageList
+                adapter!!.notifyDataSetChanged()
+            }
+        }
+    }
+
+    private fun openGalleryForImages() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     private fun setUpSpinner() {
