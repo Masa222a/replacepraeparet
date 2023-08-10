@@ -3,7 +3,6 @@ package com.hannibal.replacepraeparet.view.fragment
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,8 +12,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hannibal.replacepraeparet.R
@@ -63,6 +60,7 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -75,7 +73,7 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
                     imageList.add(imageUri)
                 }
                 reloadImageList(imageList)
-                
+
             } else if (data?.data != null) {
                 val imageUri: Uri = data.data!!
                 imageList.add(imageUri)

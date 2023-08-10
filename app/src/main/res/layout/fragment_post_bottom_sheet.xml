@@ -220,6 +220,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
+            app:layout_constraintWidth_max="300dp"
             android:scrollbars="horizontal"
             android:fadeScrollbars="false"
             app:layout_constraintStart_toStartOf="@+id/image_label"
