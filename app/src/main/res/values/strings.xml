@@ -48,4 +48,5 @@
     <string name="alert_range_label">警戒範囲</string>
     <string name="title_text_hint">タイトルを入力...</string>
     <string name="specific_position">特定位置</string>
+    <string name="choose_image_alert_text">写真は５枚まで選択できます。</string>
 </resources>
