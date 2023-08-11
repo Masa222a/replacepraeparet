@@ -25,7 +25,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class PostBottomSheetFragment : BottomSheetDialogFragment() {
-    private val Read_Permission = 101
     private lateinit var binding: FragmentPostBottomSheetBinding
     private val REQUEST_CODE = 200
     private var imageList = mutableListOf<Uri>()
@@ -36,6 +35,8 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentPostBottomSheetBinding.inflate(inflater, container, false)
+
+        val args = arguments?.getString("address_text")
 
         binding.apply {
             val recyclerView = recyclerView
@@ -51,6 +52,10 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
 
             addImageButton.setOnClickListener {
                 openGalleryForImages()
+            }
+
+            if (args != null) {
+                addressSpace.setText(args)
             }
         }
 
