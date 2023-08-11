@@ -1,5 +1,6 @@
 package com.hannibal.replacepraeparet.view.fragment
 
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,7 +21,6 @@ import java.util.*
 class PostFragment : Fragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentPostBinding
     private lateinit var mMap: GoogleMap
-    private lateinit var mp: MarkerOptions
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,6 @@ class PostFragment : Fragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         binding.putMarkerButton.setOnClickListener {
-            openBottomSheet()
             val center = mMap.cameraPosition.target
             val location = LatLng(center.latitude, center.longitude)
             val str =
@@ -46,6 +45,7 @@ class PostFragment : Fragment(), OnMapReadyCallback {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 7f))
             Log.d("location_center", "$center")
             Log.d("location_str", "$str")
+            openBottomSheet(center)
         }
 
 
@@ -53,9 +53,17 @@ class PostFragment : Fragment(), OnMapReadyCallback {
         return binding.root
     }
 
-    private fun openBottomSheet() {
+    private fun openBottomSheet(center: LatLng) {
+        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+        val address = geocoder.getFromLocation(center.latitude, center.longitude, 1)
+        val bundle = Bundle()
         val dialog = PostBottomSheetFragment()
-        dialog.show(childFragmentManager, dialog.tag)
+        if (address!!.size > 0) {
+            val addressText = address[0].getAddressLine(0)
+            bundle.putString("address_text", addressText)
+            dialog.arguments = bundle
+            dialog.show(childFragmentManager, dialog.tag)
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
