@@ -106,8 +106,9 @@
             android:hint="@string/title_text_hint"
             android:minHeight="30dp"
             android:textSize="18dp"
-            android:gravity="center"
+            android:gravity="top|left"
             android:layout_marginTop="8dp"
+            android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_label" />
 
@@ -192,6 +193,8 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:gravity="top|left"
             android:background="@drawable/bg_edittext"
             app:layout_constraintStart_toStartOf="@id/address_label"
             app:layout_constraintTop_toBottomOf="@id/address_label" />
@@ -262,6 +265,9 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:hint="@string/enter_text"
+            android:gravity="top|left"
             android:background="@drawable/bg_edittext"
             app:layout_constraintStart_toStartOf="@id/comment_label"
             app:layout_constraintTop_toBottomOf="@id/comment_label" />
