@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:minHeight="0dp"
             android:paddingTop="0dp"
-            android:text="プロフィールを編集する"
+            android:text="@string/edit_profile_text"
             android:background="@drawable/bg_profile_button"
             android:textColor="@color/black"
             app:backgroundTint="@null"
