@@ -42,13 +42,13 @@ class AccountFragment : Fragment() {
 
             auth.addAuthStateListener { mAuth ->
                 if (mAuth.currentUser != null) {
-                    loginButton.text = "ログアウト"
+                    loginButton.text = getString(R.string.logout)
                     loginButton.setOnClickListener {
                         mAuth.signOut()
                         Log.d("LoginState", "ログアウトしました。")
                     }
                 } else {
-                    loginButton.text = "ログイン"
+                    loginButton.text = getString(R.string.login)
                     loginButton.setOnClickListener {
                         launchSignInFlow()
                         Log.d("LoginState", "ログインしました。")
