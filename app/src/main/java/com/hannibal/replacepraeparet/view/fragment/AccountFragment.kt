@@ -40,12 +40,6 @@ class AccountFragment : Fragment() {
                 tab.text = tabTitleList[position]
             }.attach()
 
-            myProfilePhoto.shapeAppearanceModel =
-                ShapeAppearanceModel
-                    .builder()
-                    .setAllCornerSizes(ShapeAppearanceModel.PILL)
-                    .build()
-
             auth.addAuthStateListener { mAuth ->
                 if (mAuth.currentUser != null) {
                     loginButton.text = "ログアウト"

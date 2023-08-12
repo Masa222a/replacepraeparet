@@ -50,4 +50,5 @@
     <string name="specific_position">特定位置</string>
     <string name="choose_image_alert_text">写真は５枚まで選択できます。</string>
     <string name="enter_text">文章を入力...</string>
+    <string name="edit_profile_text">プロフィールを編集する</string>
 </resources>
