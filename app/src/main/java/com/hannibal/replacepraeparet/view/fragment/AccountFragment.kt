@@ -1,8 +1,6 @@
 package com.hannibal.replacepraeparet.view.fragment
 
-import android.app.Activity
-import android.content.ContentValues
-import android.content.Intent
+import android.app.Activity.RESULT_OK
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
-import com.google.android.material.shape.ShapeAppearanceModel
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.hannibal.replacepraeparet.R
 import com.hannibal.replacepraeparet.adapter.AccountPagerAdapter
 import com.hannibal.replacepraeparet.databinding.FragmentAccountBinding
@@ -21,8 +21,12 @@ import com.hannibal.replacepraeparet.databinding.FragmentAccountBinding
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
     private val tabTitleList = listOf("投稿", "写真", "投稿位置")
-    val SIGN_IN_RESULT_CODE = 9999
     private lateinit var auth: FirebaseAuth
+    private val signInLauncher = registerForActivityResult(
+        FirebaseAuthUIActivityResultContract()
+    ) { res ->
+        this.onSignInResult(res)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,18 +44,18 @@ class AccountFragment : Fragment() {
                 tab.text = tabTitleList[position]
             }.attach()
 
-            auth.addAuthStateListener { mAuth ->
-                if (mAuth.currentUser != null) {
-                    loginButton.text = getString(R.string.logout)
-                    loginButton.setOnClickListener {
-                        mAuth.signOut()
-                        Log.d("LoginState", "ログアウトしました。")
-                    }
-                } else {
-                    loginButton.text = getString(R.string.login)
-                    loginButton.setOnClickListener {
-                        launchSignInFlow()
-                        Log.d("LoginState", "ログインしました。")
+            loginButton.setOnClickListener {
+                auth.addAuthStateListener {
+                    if (it.currentUser != null) {
+                        loginButton.text = getString(R.string.logout)
+                        loginButton.setOnClickListener {
+                            signOut()
+                        }
+                    } else {
+                        loginButton.text = getString(R.string.login)
+                        loginButton.setOnClickListener {
+                            startSignIn()
+                        }
                     }
                 }
             }
@@ -60,37 +64,41 @@ class AccountFragment : Fragment() {
         return binding.root
     }
 
-    private fun launchSignInFlow() {
-        val providers = listOf(
+    private fun startSignIn() {
+        val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build(),
             AuthUI.IdpConfig.TwitterBuilder().build(),
 //            AuthUI.IdpConfig.FacebookBuilder().build(),
         )
 
-        startActivityForResult(
-            AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setTheme(com.facebook.R.style.Theme_AppCompat_Light_NoActionBar)
-                .setLogo(R.drawable.ic_launcher_round)
-                .setAvailableProviders(providers)
-                .build(),
-            SIGN_IN_RESULT_CODE
-        )
+        val signInIntent = AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setTheme(com.facebook.R.style.Theme_AppCompat_Light_NoActionBar)
+            .setLogo(R.drawable.ic_launcher_round)
+            .setAvailableProviders(providers)
+            .build()
+        signInLauncher.launch(signInIntent)
+        Log.d("LoginState", "ログインしました。")
+        Log.d("LoginInfoSignIn", "${Firebase.auth.currentUser}")
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == SIGN_IN_RESULT_CODE) {
-            val response = IdpResponse.fromResultIntent(data)
-            if (resultCode == Activity.RESULT_OK) {
-                Log.i(
-                    ContentValues.TAG,
-                    "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}"
-                )
-            } else {
-                Log.i(ContentValues.TAG, "Sign in unsuccessful ${response?.error?.errorCode}")
-            }
+    private fun signOut() {
+        FirebaseAuth.getInstance().signOut()
+        Log.d("LoginSignOut", "${FirebaseAuth.getInstance().currentUser}")
+        Log.d("LoginState", "ログアウトしました。")
+        Log.d("LoginInfoSignOut", "${Firebase.auth.currentUser}")
+    }
+
+    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
+        val response = result.idpResponse
+        if (result.resultCode == RESULT_OK) {
+            val user = FirebaseAuth.getInstance().currentUser
+            Log.d("LoginSignInSuccess", "${user?.providerData}")
+            Log.d("LoginSignInSuccess", "サインインに成功しました。")
+
+        } else {
+            Log.d("LoginSignInFailed", "サインインに失敗しました。")
         }
     }
 }
