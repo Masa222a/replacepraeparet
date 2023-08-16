@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
@@ -30,7 +31,7 @@ class AccountFragment : Fragment() {
     ) { res ->
         this.onSignInResult(res)
     }
-    private val viewModel: AccountFragmentViewModel by viewModels()
+    private val viewModel: AccountFragmentViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +49,8 @@ class AccountFragment : Fragment() {
                 tab.text = tabTitleList[position]
             }.attach()
 
+            editProfileButton.visibility = View.INVISIBLE
+
             loginButton.setOnClickListener {
                 auth.addAuthStateListener {
                     if (it.currentUser != null) {
@@ -55,11 +58,13 @@ class AccountFragment : Fragment() {
                         loginButton.setOnClickListener {
                             signOut()
                         }
+                        editProfileButton.visibility = View.VISIBLE
                     } else {
                         loginButton.text = getString(R.string.login)
                         loginButton.setOnClickListener {
                             startSignIn()
                         }
+                        editProfileButton.visibility = View.INVISIBLE
                     }
                 }
             }
