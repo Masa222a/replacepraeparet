@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
@@ -17,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import com.hannibal.replacepraeparet.R
 import com.hannibal.replacepraeparet.adapter.AccountPagerAdapter
 import com.hannibal.replacepraeparet.databinding.FragmentAccountBinding
+import com.hannibal.replacepraeparet.viewmodel.AccountFragmentViewModel
 
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
@@ -27,6 +30,7 @@ class AccountFragment : Fragment() {
     ) { res ->
         this.onSignInResult(res)
     }
+    private val viewModel: AccountFragmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +62,16 @@ class AccountFragment : Fragment() {
                         }
                     }
                 }
+            }
+
+            editProfileButton.setOnClickListener {
+                val name = myProfileName.text.toString()
+                val action = AccountFragmentDirections.actionNavAccountToAccountEditFragment(name)
+                findNavController().navigate(action)
+            }
+
+            viewModel.nameData.observe(viewLifecycleOwner) {
+                myProfileName.text = it
             }
         }
 

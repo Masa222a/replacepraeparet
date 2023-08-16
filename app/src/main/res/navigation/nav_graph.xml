@@ -27,12 +27,6 @@
             android:id="@+id/action_nav_information_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
-
-    <fragment
-        android:id="@+id/nav_account"
-        android:name="com.hannibal.replacepraeparet.view.fragment.AccountFragment"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.hannibal.replacepraeparet.view.fragment.DetailFragment"
@@ -45,5 +39,29 @@
         <argument
             android:name="flag"
             app:argType="com.hannibal.replacepraeparet.model.Flag" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.hannibal.replacepraeparet.view.fragment.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
+
+        <action
+            android:id="@+id/action_nav_account_to_accountEditFragment"
+            app:destination="@id/accountEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountEditFragment"
+        android:name="com.hannibal.replacepraeparet.view.fragment.AccountEditFragment"
+        android:label="fragment_account_edit"
+        tools:layout="@layout/fragment_account_edit" >
+
+        <action
+            android:id="@+id/action_accountEditFragment_to_nav_account"
+            app:popUpTo="@id/nav_account" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
 </navigation>
