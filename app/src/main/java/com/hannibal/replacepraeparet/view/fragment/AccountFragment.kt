@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -41,6 +42,8 @@ class AccountFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
+        observeAuthenticationState()
+
         binding.apply {
             val adapter = AccountPagerAdapter(childFragmentManager, lifecycle)
 
@@ -50,24 +53,6 @@ class AccountFragment : Fragment() {
             }.attach()
 
             editProfileButton.visibility = View.INVISIBLE
-
-            loginButton.setOnClickListener {
-                auth.addAuthStateListener {
-                    if (it.currentUser != null) {
-                        loginButton.text = getString(R.string.logout)
-                        loginButton.setOnClickListener {
-                            signOut()
-                        }
-                        editProfileButton.visibility = View.VISIBLE
-                    } else {
-                        loginButton.text = getString(R.string.login)
-                        loginButton.setOnClickListener {
-                            startSignIn()
-                        }
-                        editProfileButton.visibility = View.INVISIBLE
-                    }
-                }
-            }
 
             editProfileButton.setOnClickListener {
                 val name = myProfileName.text.toString()
@@ -81,6 +66,31 @@ class AccountFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun observeAuthenticationState() {
+        viewModel.authenticationState.observe(viewLifecycleOwner) { authenticationState ->
+            when (authenticationState) {
+                AccountFragmentViewModel.AuthenticationState.AUTHENTICATED -> {
+                    binding.apply {
+                        loginButton.text = getString(R.string.logout)
+                        loginButton.setOnClickListener {
+                            signOut()
+                        }
+                        editProfileButton.visibility = View.VISIBLE
+                    }
+                }
+                else -> {
+                    binding.apply {
+                        loginButton.text = getString(R.string.login)
+                        loginButton.setOnClickListener {
+                            startSignIn()
+                        }
+                        editProfileButton.visibility = View.INVISIBLE
+                    }
+                }
+            }
+        }
     }
 
     private fun startSignIn() {
@@ -104,6 +114,7 @@ class AccountFragment : Fragment() {
 
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
+        binding.myProfileName.text = getString(R.string.guest)
         Log.d("LoginSignOut", "${FirebaseAuth.getInstance().currentUser}")
         Log.d("LoginState", "ログアウトしました。")
         Log.d("LoginInfoSignOut", "${Firebase.auth.currentUser}")

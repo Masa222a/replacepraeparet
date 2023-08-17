@@ -58,4 +58,5 @@
     <string name="cancel">キャンセル</string>
     <string name="edit">変更</string>
     <string name="name">名前</string>
+    <string name="guest">ゲスト</string>
 </resources>
