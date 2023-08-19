@@ -59,4 +59,5 @@
     <string name="edit">変更</string>
     <string name="name">名前</string>
     <string name="guest">ゲスト</string>
+    <string name="failed_load_image">画像を読み込めませんでした。再度お試しください。</string>
 </resources>

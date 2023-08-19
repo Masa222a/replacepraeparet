@@ -22,6 +22,11 @@ import com.hannibal.replacepraeparet.R
 import com.hannibal.replacepraeparet.adapter.AccountPagerAdapter
 import com.hannibal.replacepraeparet.databinding.FragmentAccountBinding
 import com.hannibal.replacepraeparet.viewmodel.AccountFragmentViewModel
+import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.CropCircleTransformation
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
@@ -62,6 +67,12 @@ class AccountFragment : Fragment() {
 
             viewModel.nameData.observe(viewLifecycleOwner) {
                 myProfileName.text = it
+            }
+
+            viewModel.imageData.observe(viewLifecycleOwner) {
+                GlobalScope.launch(Dispatchers.Main) {
+                    Picasso.get().load(it).resize(80, 80).transform(CropCircleTransformation()).into(myProfilePhoto)
+                }
             }
         }
 
@@ -114,7 +125,11 @@ class AccountFragment : Fragment() {
 
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
-        binding.myProfileName.text = getString(R.string.guest)
+        binding.apply {
+            myProfileName.text = getString(R.string.guest)
+            Picasso.get().load(R.drawable.round_image).into(myProfilePhoto)
+        }
+
         Log.d("LoginSignOut", "${FirebaseAuth.getInstance().currentUser}")
         Log.d("LoginState", "ログアウトしました。")
         Log.d("LoginInfoSignOut", "${Firebase.auth.currentUser}")

@@ -113,7 +113,7 @@ class PostBottomSheetFragment : BottomSheetDialogFragment() {
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = "image/*"
-        startActivityForResult(intent, REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE)
     }
 
     private fun setUpSpinner() {
