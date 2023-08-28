@@ -53,4 +53,11 @@
     <string name="edit_profile_text">プロフィールを編集する</string>
     <string name="logout">ログアウト</string>
     <string name="login">ログイン</string>
+    <string name="example_name">Hannibal Ken</string>
+    <string name="nickname_label">ニックネーム</string>
+    <string name="cancel">キャンセル</string>
+    <string name="edit">変更</string>
+    <string name="name">名前</string>
+    <string name="guest">ゲスト</string>
+    <string name="failed_load_image">画像を読み込めませんでした。再度お試しください。</string>
 </resources>

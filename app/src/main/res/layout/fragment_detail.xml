@@ -27,6 +27,8 @@
                     android:id="@+id/back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:background="#00FF9800"
                     android:elevation="10dp"
                     app:srcCompat="@drawable/ic_arrow_back_black_48dp_white" />

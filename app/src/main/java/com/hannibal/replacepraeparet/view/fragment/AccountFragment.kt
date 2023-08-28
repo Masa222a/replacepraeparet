@@ -7,6 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
@@ -17,6 +21,12 @@ import com.google.firebase.ktx.Firebase
 import com.hannibal.replacepraeparet.R
 import com.hannibal.replacepraeparet.adapter.AccountPagerAdapter
 import com.hannibal.replacepraeparet.databinding.FragmentAccountBinding
+import com.hannibal.replacepraeparet.viewmodel.AccountFragmentViewModel
+import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.CropCircleTransformation
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
@@ -27,6 +37,7 @@ class AccountFragment : Fragment() {
     ) { res ->
         this.onSignInResult(res)
     }
+    private val viewModel: AccountFragmentViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +47,8 @@ class AccountFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
+        observeAuthenticationState()
+
         binding.apply {
             val adapter = AccountPagerAdapter(childFragmentManager, lifecycle)
 
@@ -44,24 +57,51 @@ class AccountFragment : Fragment() {
                 tab.text = tabTitleList[position]
             }.attach()
 
-            loginButton.setOnClickListener {
-                auth.addAuthStateListener {
-                    if (it.currentUser != null) {
-                        loginButton.text = getString(R.string.logout)
-                        loginButton.setOnClickListener {
-                            signOut()
-                        }
-                    } else {
-                        loginButton.text = getString(R.string.login)
-                        loginButton.setOnClickListener {
-                            startSignIn()
-                        }
-                    }
+            editProfileButton.visibility = View.INVISIBLE
+
+            editProfileButton.setOnClickListener {
+                val name = myProfileName.text.toString()
+                val action = AccountFragmentDirections.actionNavAccountToAccountEditFragment(name)
+                findNavController().navigate(action)
+            }
+
+            viewModel.nameData.observe(viewLifecycleOwner) {
+                myProfileName.text = it
+            }
+
+            viewModel.imageData.observe(viewLifecycleOwner) {
+                GlobalScope.launch(Dispatchers.Main) {
+                    Picasso.get().load(it).resize(80, 80).transform(CropCircleTransformation()).into(myProfilePhoto)
                 }
             }
         }
 
         return binding.root
+    }
+
+    private fun observeAuthenticationState() {
+        viewModel.authenticationState.observe(viewLifecycleOwner) { authenticationState ->
+            when (authenticationState) {
+                AccountFragmentViewModel.AuthenticationState.AUTHENTICATED -> {
+                    binding.apply {
+                        loginButton.text = getString(R.string.logout)
+                        loginButton.setOnClickListener {
+                            signOut()
+                        }
+                        editProfileButton.visibility = View.VISIBLE
+                    }
+                }
+                else -> {
+                    binding.apply {
+                        loginButton.text = getString(R.string.login)
+                        loginButton.setOnClickListener {
+                            startSignIn()
+                        }
+                        editProfileButton.visibility = View.INVISIBLE
+                    }
+                }
+            }
+        }
     }
 
     private fun startSignIn() {
@@ -85,6 +125,11 @@ class AccountFragment : Fragment() {
 
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
+        binding.apply {
+            myProfileName.text = getString(R.string.guest)
+            Picasso.get().load(R.drawable.round_image).into(myProfilePhoto)
+        }
+
         Log.d("LoginSignOut", "${FirebaseAuth.getInstance().currentUser}")
         Log.d("LoginState", "ログアウトしました。")
         Log.d("LoginInfoSignOut", "${Firebase.auth.currentUser}")
